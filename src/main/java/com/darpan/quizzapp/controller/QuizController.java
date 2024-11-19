@@ -2,6 +2,7 @@ package com.darpan.quizzapp.controller;
 
 import com.darpan.quizzapp.model.QuestionWrapper;
 import com.darpan.quizzapp.model.Quiz;
+import com.darpan.quizzapp.model.Response;
 import com.darpan.quizzapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,9 +21,13 @@ public class QuizController {
 
         return quizService.createQuiz(category,numQ,title);
     }
-
     @GetMapping("get/{id}")
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(@PathVariable Integer id){
         return quizService.getQuizQuestions(id);
     }
+    @PostMapping("submit/{id}")
+    public ResponseEntity<Integer> getResult(@PathVariable Integer id, @RequestBody List<Response> responses){
+        return quizService.calculateResult(id,responses);
+    }
+
 }
