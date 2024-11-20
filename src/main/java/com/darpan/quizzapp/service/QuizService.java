@@ -17,10 +17,15 @@ import java.util.Optional;
 
 @Service
 public class QuizService {
-    @Autowired
-    QuizDao quizDao;
-    @Autowired
-    QuestionDao questionDao;
+
+    private final QuizDao quizDao;
+    private final QuestionDao questionDao;
+
+    public QuizService(QuizDao quizDao, QuestionDao questionDao) {
+        this.quizDao = quizDao;
+        this.questionDao = questionDao;
+    }
+
 
     public ResponseEntity<String> createQuiz(String category, int numQ, String quizTitle) {
 

@@ -14,8 +14,13 @@ import java.util.List;
 @RestController
 @RequestMapping("quiz")
 public class QuizController {
+
+    private QuizService quizService;
+    //Setter Injection
     @Autowired
-    QuizService quizService;
+    public void setQuizService(QuizService quizService){
+        this.quizService = quizService;
+    }
     @PostMapping("create")
     public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam int numQ, @RequestParam String title){
 

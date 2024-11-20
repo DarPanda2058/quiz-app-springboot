@@ -13,8 +13,12 @@ import java.util.List;
 @RestController
 @RequestMapping("question")
 public class QuestionController {
-    @Autowired
-    QuestionService questionService;
+
+    private final QuestionService questionService;
+    //Constructor Injection
+    QuestionController(QuestionService questionService){
+        this.questionService = questionService;
+    }
 
     @GetMapping("allQuestions")
     public ResponseEntity<List<Question>> getAllQuestions(){
